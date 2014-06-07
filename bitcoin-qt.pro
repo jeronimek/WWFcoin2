@@ -1,6 +1,6 @@
 TEMPLATE = app
-TARGET = pzc-qt
-macx:TARGET = "PZC-Qt"
+TARGET = WWFC-qt
+macx:TARGET = "WWFC-Qt"
 VERSION = 0.8.7.1
 INCLUDEPATH += src src/json src/qt
 QT += core gui network
@@ -319,7 +319,7 @@ SOURCES += src/qt/test/test_main.cpp \
 HEADERS += src/qt/test/uritests.h
 DEPENDPATH += src/qt/test
 QT += testlib
-TARGET = pzc-qt_test
+TARGET = WWFC-qt_test
 DEFINES += BITCOIN_QT_TEST
   macx: CONFIG -= app_bundle
 }

@@ -37,7 +37,7 @@ unsigned int nTransactionsUpdated = 0;
 map<uint256, CBlockIndex*> mapBlockIndex;
 //uint256 hashGenesisBlock("0x12a765e31ffd4059bada1e25190f6e98c99d9714d334efa41a195a7e7e04bfe2");
 //uint256 hashGenesisBlock("0xf094a785b3b1d1a60cd5e500be73eb20b32febda0d833c053dae8ebda6706a8f");
-uint256 hashGenesisBlock("0x0c20f8f1ba439bfbca75e98265518ed3479bdc5f4eb6b27231c054676ef47928");
+uint256 hashGenesisBlock("0x");
 static CBigNum bnProofOfWorkLimit(~uint256(0) >> 12); // Litecoin: starting difficulty is 1 / 2^12
 CBlockIndex* pindexGenesisBlock = NULL;
 int nBestHeight = -1;
@@ -70,7 +70,7 @@ map<uint256, set<uint256> > mapOrphanTransactionsByPrev;
 // Constant stuff for coinbase transactions we create:
 CScript COINBASE_FLAGS;
 
-const string strMessageMagic = "Projekt Zespołowy Coin Signed Message:\n";
+const string strMessageMagic = "WWFcoin Signed Message:\n";
 
 double dHashesPerSec = 0.0;
 int64 nHPSTimerStart = 0;
@@ -362,7 +362,7 @@ unsigned int LimitOrphanTxSize(unsigned int nMaxOrphans)
 bool CTxOut::IsDust() const
 {
     // Credits: IsDust() detection disabled, allows any valid dust to be relayed.
-    // The fees imposed on each dust txo is considered sufficient spam deterrant. 
+    // The fees imposed on each dust txo is considered sufficient spam deterrant.
     return false;
 }
 
@@ -1089,15 +1089,15 @@ int64 static GetBlockValue(int nHeight, int64 nFees)
     int64 nSubsidy = 128 * COIN;
 
     // Subsidy is cut in half every 300000 blocks, which will occur approximately every 1 year
-    nSubsidy >>= (nHeight / 300000); // Projekt Zespolowy Coin: 300k blocks in ~1 years
+    nSubsidy >>= (nHeight / 300000); // WWFcoin: 300k blocks in ~1 years
 
     return nSubsidy + nFees;
 }
 
 //static const int64 nTargetTimespan = 3.5 * 24 * 60 * 60; // Litecoin: 3.5 days
-static const int64 nTargetTimespan = 1 * 24 * 60 * 60; // Projekt Zespolowy Coin: 1 days
+static const int64 nTargetTimespan = 2 * 365 * 24 * 60 * 60; // WWFcoin: 2 years
 //static const int64 nTargetSpacing = 2.5 * 60; // Litecoin: 2.5 minutes
-static const int64 nTargetSpacing = 2 * 60; // Projekt Zespolowy Coin: 2 minutes
+static const int64 nTargetSpacing = 5 * 60; // WWFcoin: 5 minutes
 static const int64 nInterval = nTargetTimespan / nTargetSpacing;
 
 //
@@ -2798,27 +2798,27 @@ bool InitBlockIndex() {
         block.hashMerkleRoot = block.BuildMerkleTree();
         block.nVersion = 1;
         //block.nTime    = 1317972665;
-        block.nTime    = 1399681159;
+        block.nTime    = 1402138817;
         block.nBits    = 0x1f0ffff0;
         //block.nNonce   = 2084524493;
-        block.nNonce   = 3320;
+        block.nNonce   = 0;
 
-        /*if (fTestNet)
+        if (fTestNet)
         {
-            //block.nTime    = 1317798646;
-            block.nTime    = 1399681084;
+            //block.nTime    = 1402138817;
+            block.nTime    = 1402138817;
             block.nNonce   = 0;
-        }*/
+        }
 
         //// debug print
         uint256 hash = block.GetHash();
         printf("%s\n", hash.ToString().c_str());
         printf("%s\n", hashGenesisBlock.ToString().c_str());
         printf("%s\n", block.hashMerkleRoot.ToString().c_str());
-        assert(block.hashMerkleRoot == uint256("0xea364f65d9766fe38bcca565803b22d0374f2fd5c86cea59e5af65e2345d4287"));
+        assert(block.hashMerkleRoot == uint256("0x"));
 /** odtad */
         // If genesis block hash does not match, then generate new genesis hash.
-                if (true && block.GetHash() != hashGenesisBlock)
+                if (false && block.GetHash() != hashGenesisBlock)
                 {
                     printf("Searching for genesis block...\n");
                     // This will figure out a valid hash and Nonce if you're
